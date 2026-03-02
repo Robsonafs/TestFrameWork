@@ -1,0 +1,13 @@
+# Cache do Python e Pytest
+__pycache__/
+.pytest_cache/
+
+# Ambientes Virtuais (caso esteja usando)
+venv/
+env/
+.env
+
+# Relatórios e resultados do Playwright
+playwright-report/
+test-results/
+.playwright/
