@@ -3,7 +3,6 @@ from pages.login_page import LoginPage
 from pages.inventory_page import InventoryPage
 
 
-# Utilizamos uma fixture do pytest para evitar repetição de código (setup de login)
 @pytest.fixture
 def login_padrao(page):
     login_page = LoginPage(page)
@@ -46,7 +45,6 @@ def test_remover_item_do_carrinho(login_padrao):
     """Teste 4: Valida se o contador do carrinho zera ao remover o produto"""
     inventory_page = InventoryPage(login_padrao)
 
-    # Adiciona e depois remove
     inventory_page.adicionar_produto_ao_carrinho("sauce-labs-bike-light")
     inventory_page.remover_produto_do_carrinho("sauce-labs-bike-light")
     quantidade = inventory_page.obter_quantidade_carrinho()
@@ -59,6 +57,6 @@ def test_realizar_logout(login_padrao):
     inventory_page = InventoryPage(login_padrao)
     inventory_page.realizar_logout()
 
-    # Valida se o botão de login voltou a aparecer (indicando que deslogou)
-    botao_login_visivel = login_padrao.locator("[data-test='login-button']").is_visible()
+    # Utilizamos a variável BOTAO_LOGIN diretamente da classe LoginPage
+    botao_login_visivel = login_padrao.locator(LoginPage.BOTAO_LOGIN).is_visible()
     assert botao_login_visivel is True
